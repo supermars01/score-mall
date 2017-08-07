@@ -78,3 +78,5 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 > 编辑、打包工具： webpack, babel,node-sass
 > 单元测试工具： karma 、 mocha 、sinon-chai
 > 本地服务器：express
+
+暂停开发学习中
