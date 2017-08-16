@@ -18,6 +18,7 @@ import MOrder from '@/views/goods/matterOrder'
 import EOrder from '@/views/goods/eOrder'
 import COrder from '@/views/goods/codeOrderDetail'
 import LoseInternet from '@/views/loseInternet'
+import Test from '@/test/test'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: Test
     },
     {
       path: '*',

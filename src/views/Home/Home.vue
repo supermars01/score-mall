@@ -14,6 +14,8 @@
         </div>
       </div>
 
+     <button> <router-link to="/test">test</router-link></button>
+
       <div class="score-game">
         <a class="game-item" href="##">
           <img src="../../assets/images/btn_lucky_draw.png" alt="">
@@ -83,6 +85,7 @@
     <!--弹窗背景-->
     <div class="bg animated" :class="{fadeIn:modal, fadeOut:!modal }" v-show="modal" ></div>
     <!--签到提醒弹窗-->
+
     <div class="signIn-containerT" v-show="remindModal" >
       <div class="signIn-remind animated" :class="{slideInDown:remindModal, slideOutUp: !remindModal}" >
         <div class="remind-box">
