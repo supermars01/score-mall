@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" v-model="childFoo">
+    第一个组件
   </div>
 </template>
 <script type="text/ecmascript-6">
