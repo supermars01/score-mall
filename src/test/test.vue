@@ -1,24 +1,25 @@
 <template>
+  <div>
+    父：{{bar}}
+    <child :foo.sync="bar"></child>
+  </div>
+
 
 </template>
 <script type="text/ecmascript-6">
-export default {
-  name: 'hello',
-  data () {
-    return {
-      userLists: [
-        {name: 'jack', age: 28},
-        {name: 'rose', age: 29},
-        {name: 'john', age: 18},
-        {name: 'ben', age: 23}
-      ],
-      newUser: {}
+  import child from './child.vue'
+  export default {
+    name: 'hello',
+    data () {
+      return {
+        total: 0,
+        bar: 'nothing'
+      }
+    },
+    components: {
+      child
     }
-  },
-  methods: {
-
   }
-}
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
 
