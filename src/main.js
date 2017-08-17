@@ -20,6 +20,21 @@ Vue.filter('tel-formater', function (value) {
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
+  data () {
+    return {
+      nav: '积分商城'
+    }
+  },
+  mounted () {
+    var _this = this
+    router.beforeEach((to, from, next) => {
+      if (to.meta.title) {
+        document.title = to.meta.title
+        _this.nav = to.meta.title
+      }
+      next()
+    })
+  },
+  template: '<App :nav="nav"/>',
   components: { App }
 })

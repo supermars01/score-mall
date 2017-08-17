@@ -27,7 +27,10 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        title: '积分商城'
+      }
     },
     {
       path: '/test',
@@ -59,12 +62,18 @@ export default new Router({
     {
       path: '/treasure',
       name: 'treasure',
-      component: Treasure
+      component: Treasure,
+      meta: {
+        title: '夺宝'
+      }
     },
     {
       path: '/task',
       name: 'task',
-      component: Task
+      component: Task,
+      meta: {
+        title: '任务列表'
+      }
     },
     {
       path: '/goods',

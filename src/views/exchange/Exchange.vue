@@ -3,26 +3,28 @@
     <div class="container index-wrapper exchange-page">
       <div class="score-exchange">
         <!--筛选下拉框-->
-        <div class="filter-modal" v-show="modal">
-          <div class="filter-box animated" :class="{slideInDown: modal}">
-            <div class="filter-item">
-              <h5>积分区间</h5>
-              <ul class="tag-lists clearfix">
-                <li v-for="(score, index) in scoreArr" :data-index="index" @click="chooseScore" :class="index==scoreIndex ? 'active' : ''">{{score}}</li>
-              </ul>
-            </div>
-            <div class="filter-item">
-              <h5>分类</h5>
-              <ul class="tag-lists clearfix">
-                <li :data-index="index" @click="chooseSort" v-for="(sort, index) in classifysArr" :class="index == sortIndex ? 'active' : ''">{{sort}}</li>
-              </ul>
-            </div>
-            <div class="button-groups">
-              <button type="button" class="mui-btn" @click="cancleFilter">取消</button>
-              <button type="button" class="mui-btn sureBtn" @click="filterSure">确定</button>
+        <transition enter-active-class="animated slideInDown" leave-active-class="animated slideOutUp">
+          <div class="filter-modal" v-show="modal">
+            <div class="filter-box animated" :class="{slideInDown: modal}">
+              <div class="filter-item">
+                <h5>积分区间</h5>
+                <ul class="tag-lists clearfix">
+                  <li v-for="(score, index) in scoreArr" :data-index="index" @click="chooseScore" :class="index==scoreIndex ? 'active' : ''">{{score}}</li>
+                </ul>
+              </div>
+              <div class="filter-item">
+                <h5>分类</h5>
+                <ul class="tag-lists clearfix">
+                  <li :data-index="index" @click="chooseSort" v-for="(sort, index) in classifysArr" :class="index == sortIndex ? 'active' : ''">{{sort}}</li>
+                </ul>
+              </div>
+              <div class="button-groups">
+                <button type="button" class="mui-btn" @click="cancleFilter">取消</button>
+                <button type="button" class="mui-btn sureBtn" @click="filterSure">确定</button>
+              </div>
             </div>
           </div>
-        </div>
+        </transition>
         <!--兑换顶栏-->
         <div class="exchange-title">
           <div class="score">我的积分：<strong>{{myScore}}</strong></div>

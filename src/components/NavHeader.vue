@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar">
     <div class="back-arrow" @click="goback"><i class="mui-icon mui-icon-back"></i></div>
-    <div class="nav-title">{{msg}}</div>
+    <div class="nav-title">{{nav}}</div>
     <div class="share-icon"><i class="mui-icon mui-icon-more"></i></div>
   </div>
 </template>
@@ -18,7 +18,8 @@
       goback () {
         route.go(-1)
       }
-    }
+    },
+    props: ['nav']
   }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>

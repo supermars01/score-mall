@@ -1,10 +1,13 @@
 <template>
   <div>
     <ul>
-      <li><button @ick="change(1)">组件1</button></li>
+      <li><button @click="change(1)">组件1</button></li>
       <li><button @click="change(2)">组件2</button></li>
     </ul>
-    <component :is="currentView"></component>
+    <transition mode="out-in" enter-active-class="animated fadeIn"
+                leave-active-class="animated fadeOut" duration="300">
+      <component :is="currentView"></component>
+    </transition>
   </div>
 
 
@@ -30,6 +33,7 @@
         if (index === 1) {
           this.currentView = 'child'
         } else if (index === 2) {
+          console.log(222)
           this.currentView = 'child2'
         }
       }
@@ -45,4 +49,5 @@
       line-height: 0.68rem;
     }
   }
+
 </style>

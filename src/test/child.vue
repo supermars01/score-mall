@@ -1,6 +1,12 @@
 <template>
   <div>
-    第一个组件
+   <p>对于这些在 enter/leave 过渡中切换的类名，v- 是这些类名的前缀。</p>
+   <p>对于这些在 enter/leave 过渡中切换的类名，v- 是这些类名的前缀。</p>
+   <p>对于这些在 enter/leave 过渡中切换的类名，v- 是这些类名的前缀。</p>
+   <p>对于这些在 enter/leave 过渡中切换的类名，v- 是这些类名的前缀。</p>
+   <p>对于这些在 enter/leave 过渡中切换的类名，v- 是这些类名的前缀。</p>
+   <p>对于这些在 enter/leave 过渡中切换的类名，v- 是这些类名的前缀。</p>
+   <p>对于这些在 enter/leave 过渡中切换的类名，v- 是这些类名的前缀。</p>
   </div>
 </template>
 <script type="text/ecmascript-6">

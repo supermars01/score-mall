@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavHeader></NavHeader>
+    <NavHeader :nav="nav"></NavHeader>
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -13,6 +13,10 @@
     name: 'app',
     components: {
       NavHeader
+    },
+    props: ['nav'],
+    mounted () {
+      console.log(this.nav)
     }
   }
 </script>
