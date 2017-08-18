@@ -19,6 +19,7 @@ import EOrder from '@/views/goods/eOrder'
 import COrder from '@/views/goods/codeOrderDetail'
 import LoseInternet from '@/views/loseInternet'
 import Test from '@/test/test'
+import Score from '@/views/game/Score'
 
 Vue.use(Router)
 
@@ -119,6 +120,13 @@ export default new Router({
       path: '/address',
       name: 'address',
       component: Address
+    },
+    {
+      path: '/score',
+      component: Score,
+      meta: {
+        title: '积分抽奖'
+      }
     }
   ]
 })

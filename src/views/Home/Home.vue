@@ -17,14 +17,14 @@
      <button> <router-link to="/test">test</router-link></button>
 
       <div class="score-game">
-        <a class="game-item" href="##">
+        <router-link class="game-item" to="/score">
           <img src="../../assets/images/btn_lucky_draw.png" alt="">
           <h4>抽奖</h4>
-        </a>
-        <a href="##" class="game-item">
+        </router-link>
+        <router-link to="/score" class="game-item">
           <img src="../../assets/images/btn_lottery.png" alt="">
           <h4>周周乐</h4>
-        </a>
+        </router-link>
         <router-link to="/treasure" class="game-item">
           <img src="../../assets/images/btn_indiana.png" alt="">
           <h4>夺宝</h4>
