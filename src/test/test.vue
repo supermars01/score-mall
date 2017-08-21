@@ -1,9 +1,10 @@
 <template>
   <div>
     <ul>
-      <li><button @click="change(1)">组件1</button></li>
+      <li><button @click="change(1)">组件1</button>{{test}}</li>
       <li><button @click="change(2)">组件2</button></li>
     </ul>
+    <p>total: {{count}}为</p>
     <transition mode="out-in" enter-active-class="animated fadeIn"
                 leave-active-class="animated fadeOut" duration="300">
       <component :is="currentView"></component>
@@ -15,6 +16,8 @@
 <script type="text/ecmascript-6">
   import child from './child.vue'
   import child2 from './child2.vue'
+  import {mapState} from 'vuex'
+  console.log(mapState)
   export default {
     name: 'hello',
     data () {
@@ -36,6 +39,11 @@
           console.log(222)
           this.currentView = 'child2'
         }
+      }
+    },
+    computed: {
+      count: function () {
+        return this.$store.state.count
       }
     }
   }

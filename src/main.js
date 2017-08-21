@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import mui from './assets/libs/mui.min'
 import axios from 'axios'
+import store from './store'
 
 Vue.prototype.$mui = mui
 Vue.prototype.$http = axios
@@ -25,6 +26,7 @@ new Vue({
       nav: '积分商城'
     }
   },
+  store,
   mounted () {
     var _this = this
     router.beforeEach((to, from, next) => {

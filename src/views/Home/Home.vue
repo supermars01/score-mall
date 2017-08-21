@@ -3,7 +3,7 @@
     <div class="container index-wrapper">
       <div class="sign-block">
         <div class="score">
-          <a herf="##"><strong>23</strong>积分&nbsp; </a>
+          <a herf="##"><strong>{{score}}</strong>积分&nbsp; </a>
         </div>
         <div class="sign-btn" @click="slideSign">
           签到
@@ -116,6 +116,7 @@
   import SignSuccess from './SignSuccess.vue'
   import NavHeader from '@/components/NavHeader.vue'
   import Loading from '@/components/Loading'
+  import {mapState} from 'vuex'
   export default {
     data () {
       return {
@@ -152,6 +153,7 @@
       }
     },
     mounted () {
+      console.log(this.$store.state.score)
       var _this = this
       this.$mui('#slider').slider({
         interval: 4000
@@ -159,7 +161,10 @@
       setTimeout(function () {
         _this.remindModal = false // 签到提醒
       }, 2000)
-    }
+    },
+    computed: mapState([
+      'score'
+    ])
   }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
