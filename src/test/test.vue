@@ -1,61 +1,85 @@
 <template>
   <div>
-    <ul>
-      <li><button @click="changeState">组件1</button>{{test}}</li>
-      <li><button @click="change(2)">组件2</button></li>
-    </ul>
-    <p>total: {{count}}为</p>
-    <transition mode="out-in" enter-active-class="animated fadeIn"
-                leave-active-class="animated fadeOut" duration="300">
-      <component :is="currentView"></component>
-    </transition>
+    <button @click="get">get请求</button>
+    <button @click="post">post请求</button>
+    <button @click="http">http请求</button>
+    <div>{{goods}}</div>
+    <Loading v-if="loading"></Loading>
   </div>
 
 
 </template>
 <script type="text/ecmascript-6">
-  import child from './child.vue'
-  import child2 from './child2.vue'
-  import {mapState} from 'vuex'
+  import axios from 'axios'
+  import Loading from '@/components/Loading'
   export default {
     name: 'hello',
     data () {
       return {
-        total: 0,
-        bar: 'nothing',
-        currentView: 'child'
+        goods: '',
+        loading: false
       }
     },
     components: {
-      child,
-      child2
+      Loading
     },
     methods: {
-      change (index) {
-        if (index === 1) {
-          this.currentView = 'child'
-        } else if (index === 2) {
-          this.currentView = 'child2'
-        }
+      get () {
+        axios.get('/mock/goods.json', {
+          params: {
+            goodsId: '123'
+          },
+          headers: {
+            token: 'jask'
+          }
+        }).then(res => {
+          this.goods = res.data.data
+          console.log(res.data)
+        })
       },
-      changeState () {
-        this.$store.commit('increament')
+      post () {
+        axios.post('/mock/goods.json', {
+          data: {
+            goodsId: '123'
+          },
+          headers: {
+            token: 'rose'
+          },
+          time: 50
+        }).then(res => {
+          this.goods = res.data.data
+        }).catch(error => {
+          console.log(error)
+        })
+      },
+      http () {
+        axios({
+          url: '/mock/goods.json',
+          method: 'get',
+          params: {
+            goodsId: '123'
+          }
+        }).then(res => {
+          this.goods = res.data.data
+        })
       }
     },
-    computed: mapState([
-      'count',
-      'test'
-    ])
+    mounted: function () {
+      var that = this
+      axios.interceptors.request.use(function (config) {
+        that.loading = true
+        console.log('request init..')
+        return config
+      })
+      axios.interceptors.response.use(response => {
+        that.loading = false
+        console.log('response init...')
+        return response
+      })
+    }
   }
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
-  ul{
-    overflow: hidden;
-    li{
-      float: left;
-      height:0.68rem;
-      line-height: 0.68rem;
-    }
-  }
+
 
 </style>

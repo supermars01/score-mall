@@ -8,38 +8,89 @@
       width:300px;
       height:300px;
     }
+    #richedit{
+      width:200px;
+      height:200px;
+    }
   </style>
 </head>
 <body>
-<div onclick="test()">afasdfsf</div>
-<iframe id="box1" src="http://www.baidu.com" frameborder="0"></iframe>
-<iframe src="http://www.weibo.com" frameborder="0" id="box2"></iframe>
+<div class="editable" id="richedit" contenteditable="true">
+  hello world
+</div>
+<form id="box" action="##">
+  <input type="text" name="name" value="hello">
+  <input type="password" name="pwd" value="123456">
+  <input type="checkbox" name="check" value="check1">
+  <input type="checkbox" name="check" value="check2">
+  <input type="checkbox" name="check" value="check3">
+  <input type="radio" name="radio" value="radio1">
+  <input type="radio" name="radio" value="radio2">
+  <select name="select" id="">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+  <button type="submit">submit</button>
+</form>
 <script type="text/javascript">
-  function getQueryStringArgs(){
-    //获取查询字符串并去掉开头的？
-    var qs = (location.search.length>0?location.search.substr(1):""),
-    //保存数据的对象
-    args = {},
-    //取得每一项
-    items = qs.length?qs.split("&") : [],
-    item = null,
-    name = null,
-    value = null,
-//      在for循环中使用
-    len = items.length;
-    //遍历获取每一项添加到args对象中
-    for(i=0;i<len;i++){
-      item=items[i].split("=")
-      name = decodeURIComponent(item[0]);
-      value = decodeURIComponent(item[1]);
-      if(name.length){
-          args[name] =value;
+  function serialize(form){
+      var parts = [],//保存序列化的结果
+        field =null, //携带时每个表单字段的暂存对象
+        i,
+        len,
+        j,
+        optLen,
+        option,
+        optValue;
+      for(i=0,len=form.elements.length;i<len;i++){
+          field = form.elements[i];
+
+          switch(field.type){
+            case "select-one": //针对select表单字段
+            case "select-multiple":
+                if(field.name.length){
+                    for(j=0,optLen=field.options.length;j<optLen;j++){
+                        option=field.options[j];
+                        if(option.selected){
+                            optValue="";
+                            if(option.hasAttribute){
+                                optValue=(option.hasAttribute('value'))?option.value:option.text;
+                            }else{
+                                optValue=(option.attributes['value']).specified?option.value:option.text;
+                            }
+                            parts.push(encodeURIComponent(field.name)+"="+encodeURIComponent(optValue));
+                        }
+                    }
+                }
+                break;
+            case undefined:
+            case 'file':
+            case 'submit':
+            case 'reset':
+            case 'button':
+                break;
+            case 'radio':
+            case 'checkbox':
+                if(!field.checked) break;
+                /*执行默认操作*/
+            default:
+                //不包含没有名字的表单字段
+                  if(field.name.length){
+                    parts.push(encodeURIComponent(field.name)+'='+encodeURIComponent(field.value));
+                  }
+          }
       }
-    }
-    return args;
+      return parts.join('&');
   }
-  var args = getQueryStringArgs()
-  console.log(args)
+  var form = document.forms[0];
+  form.addEventListener('submit',function(event){
+      event = event||window.event
+    event.preventDefault()
+    var result=serialize(form)
+    console.log(result)
+  })
 </script>
+
 </body>
 </html>
